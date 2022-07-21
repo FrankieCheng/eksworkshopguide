@@ -58,4 +58,4 @@ sudo mv -v /tmp/eksctl /usr/local/bin
 
 eksctl version
 
-eksctl create cluster -f eksworkshopguide/yamls/eksworkshop.yaml
+eksctl create cluster -f eksworkshopguide/yamls/ekscluster.yaml

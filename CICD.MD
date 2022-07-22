@@ -1,6 +1,6 @@
-1. Create Multi-Arch Docker file (about 10 mins)
+1. Create Multi-Arch Docker file (about 20 mins)
 ```bash
-. ~/environment/eks-workshop-create-cluster/eks-graviton2-cicd.sh
+. ~/environment/eksworkshopguide/eks-graviton2-cicd.sh
 ```
 * Clone the Repo from Graviton workshop
 * Create the CodePipeline.

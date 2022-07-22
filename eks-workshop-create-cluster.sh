@@ -21,6 +21,10 @@ sudo curl --silent --location -o /usr/local/bin/kubectl \
 
 sudo chmod +x /usr/local/bin/kubectl
 
+kubectl completion bash >>  ~/.bash_completion
+. /etc/profile.d/bash_completion.sh
+. ~/.bash_completion
+
 #set the AWS Load Balancer Controller version 
 echo 'export LBC_VERSION="v2.4.1"' >>  ~/.bash_profile
 echo 'export LBC_CHART_VERSION="1.4.1"' >>  ~/.bash_profile
@@ -60,4 +64,12 @@ sudo mv -v /tmp/eksctl /usr/local/bin
 
 eksctl version
 
+eksctl completion bash >> ~/.bash_completion
+. /etc/profile.d/bash_completion.sh
+. ~/.bash_completion
+
+# replace parameters.
+sed 's/$AWS_REGION/'"${AWS_REGION}"'/g;s/$AZ0/'"${AZS[0]}"'/g;s/$AZ1/'"${AZS[1]}"'/g;s/$AZ2/'"${AZS[2]}"'/g;s/$MASTER_ARN/'"${MASTER_ARN}"'/g;' eksworkshopguide/yamls/eksclustertemplate.yaml > eksworkshopguide/yamls/ekscluster.yaml
+
+# create cluster.
 eksctl create cluster -f eksworkshopguide/yamls/ekscluster.yaml

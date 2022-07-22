@@ -6,4 +6,4 @@
 * Create the CodePipeline.
 * Commit the code to trigger Codepipeline.
 * Monitor CodePipeline steps using AWS Console by opening this link in a new tab. https://ap-southeast-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/graviton2-pipeline-lab/view?region=ap-southeast-1
-* Wait all steps of CodePipeline are successful
+* Wait all steps of CodePipeline are successful, check the repository images at https://ap-southeast-1.console.aws.amazon.com/ecr/repositories?region=ap-southeast-1

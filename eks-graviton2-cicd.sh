@@ -14,7 +14,7 @@ pip install -r requirements.txt
 cdk bootstrap aws://$ACCOUNT_ID/$AWS_REGION 
 cdk synth 
 cdk ls 
-cdk deploy GravitonID-pipeline
+cdk deploy --require-approval never GravitonID-pipeline
 cd ~/environment/graviton2-workshop/
 git clone `aws cloudformation describe-stacks --stack-name GravitonID-pipeline --query "Stacks[0].Outputs[0].OutputValue" --output text`               
 cp -r graviton2/cs_graviton/app/* graviton2-pipeline-lab/

@@ -168,4 +168,30 @@ helm upgrade --install --namespace karpenter --create-namespace \
   --set aws.defaultInstanceProfile=KarpenterNodeInstanceProfile-${CLUSTER_NAME} \
   --wait # for the defaulting webhook to install before creating a Provisioner
 
+SUBNET_IDS=$(aws cloudformation describe-stacks \
+    --stack-name eksctl-${CLUSTER_NAME}-cluster \
+    --query 'Stacks[].Outputs[?OutputKey==`SubnetsPrivate`].OutputValue' \
+    --output text)
+aws ec2 create-tags \
+    --resources $(echo $SUBNET_IDS | tr ',' '\n') \
+    --tags Key="karpenter.sh/discovery",Value=${CLUSTER_NAME}
+
+VALIDATION_SUBNETS_IDS=$(aws ec2 describe-subnets --filters Name=tag:"karpenter.sh/discovery",Values= --query "Subnets[].SubnetId" --output text | sed 's/\t/,/')
+echo "$SUBNET_IDS == $VALIDATION_SUBNETS_IDS"
+
+
+SG_IDS=$(aws cloudformation describe-stacks \
+    --stack-name eksctl-${CLUSTER_NAME}-cluster \
+    --query 'Stacks[].Outputs[?OutputKey==`SecurityGroup`].OutputValue' \
+    --output text)
+aws ec2 create-tags \
+    --resources $(echo $SG_IDS | tr ',' '\n') \
+    --tags Key="karpenter.sh/discovery",Value=${CLUSTER_NAME}
+
+VALIDATION_SG_IDS=$(aws ec2 describe-security-groups --filters Name=tag:"karpenter.sh/discovery",Values= --query "SecurityGroups[].GroupId" --output text | sed 's/\t/,/')
+echo "$SG_IDS == $VALIDATION_SG_IDS"
+
 kubectl apply -f eksworkshopguide/yamls/karpenter-provisioner.yaml
+
+
+

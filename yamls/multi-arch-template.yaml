@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multiarch-deployment
+  namespace: default
+  labels:
+    app: multiarch-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: multiarch-app
+  template:
+    metadata:
+      labels:
+        app: multiarch-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - arm64
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - multiarch-app
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: multiarch-container
+        image: {{container_uri}} 
+        ports:
+        - containerPort: 80

@@ -15,6 +15,3 @@ managedNodeGroups:
   instanceType: t3.small
   ssh:
     enableSsm: true
-
-secretsEncryption:
-  keyARN: $MASTER_ARN

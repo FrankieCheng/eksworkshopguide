@@ -16,7 +16,7 @@
 ```bash
 git clone https://github.com/FrankieCheng/eksworkshopguide;chmod +755 eksworkshopguide/*.sh; . eksworkshopguide/eks-workshop-create-cluster.sh
 ```
-* Launching EKS and all the dependencies will take approximately 25 minutes
+* Launching EKS and all the dependencies will take approximately 30 minutes
 
 4.Deploy the test application and scale the deployment to check Karpenter status.
 * Deploy a pause image and starts with zero replicas.

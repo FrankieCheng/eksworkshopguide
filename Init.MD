@@ -31,3 +31,7 @@ kubectl logs -f -n karpenter -l app.kubernetes.io/name=karpenter -c controller
 ```bash
 kubectl scale deployment inflate --replicas 0
 ```
+* You will see the added node was gone after 1 mins.
+```bash
+kubectl get nodes
+```

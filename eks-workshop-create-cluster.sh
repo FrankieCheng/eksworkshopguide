@@ -49,14 +49,10 @@ aws configure get default.region
 aws sts get-caller-identity --query Arn | grep eksworkshop-admin -q && echo "IAM role valid" || echo "IAM role NOT valid"
 
 #create custom kms.
-aws kms create-alias --alias-name alias/eksworkshop --target-key-id $(aws kms create-key --query KeyMetadata.Arn --output text)
+#aws kms create-alias --alias-name alias/eksworkshop --target-key-id $(aws kms create-key --query KeyMetadata.Arn --output text)
 
-export MASTER_ARN=$(aws kms describe-key --key-id alias/eksworkshop --query KeyMetadata.Arn --output text)
-export master_arn=$(aws kms describe-key --key-id alias/eksworkshop --query KeyMetadata.Arn --output text)
-
-echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
-
-echo "export master_arn=${master_arn}" | tee -a ~/.bash_profile
+#export MASTER_ARN=$(aws kms describe-key --key-id alias/eksworkshop --query KeyMetadata.Arn --output text)
+#echo "export MASTER_ARN=${MASTER_ARN}" | tee -a ~/.bash_profile
 
 source  ~/.bash_profile
 
@@ -72,7 +68,7 @@ eksctl completion bash >> ~/.bash_completion
 . ~/.bash_completion
 
 # replace parameters.
-sed 's/$AWS_REGION/'"${AWS_REGION}"'/g;s/$AZ0/'"${AZS[0]}"'/g;s/$AZ1/'"${AZS[1]}"'/g;s/$AZ2/'"${AZS[2]}"'/g;s/$MASTER_ARN/'"${master_arn}"'/g;' eksworkshopguide/yamls/ekscluster-template.yaml > eksworkshopguide/yamls/ekscluster.yaml
+sed 's/$AWS_REGION/'"${AWS_REGION}"'/g;s/$AZ0/'"${AZS[0]}"'/g;s/$AZ1/'"${AZS[1]}"'/g;s/$AZ2/'"${AZS[2]}"'/g' eksworkshopguide/yamls/ekscluster-template.yaml > eksworkshopguide/yamls/ekscluster.yaml
 
 # create cluster.
 eksctl create cluster -f eksworkshopguide/yamls/ekscluster.yaml

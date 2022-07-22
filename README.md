@@ -5,4 +5,6 @@
 * Create a cluster
 * Install Karpenter
  
-# 2.CICD
+# 2.Following the guide [CICD](CICD.MD) to generate the multi-arch images on X86 and arm64 (Graviton)
+
+# 3.Use [Graviton](Graviton.MD) the test application to deploy workload with multi arch.

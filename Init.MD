@@ -11,5 +11,9 @@
 * Choose Other instance type, and select t3.medium for instance type, take all default values and click Create environment
 
 3.Launch a EKS with Nodegroups and install Karpenter.
-* Open a new Terminal in Cloud9. and run ‘git clone https://github.com/FrankieCheng/eksworkshopguide;chmod +755 eksworkshopguide/eks-workshop-create-cluster.sh; . eksworkshopguide/eks-workshop-create-cluster.sh'
+* Open a new Terminal in Cloud9. and run 
+
+```bash
+git clone https://github.com/FrankieCheng/eksworkshopguide;chmod +755 eksworkshopguide/eks-workshop-create-cluster.sh; . eksworkshopguide/eks-workshop-create-cluster.sh
+```
 * Launching EKS and all the dependencies will take approximately 25 minutes

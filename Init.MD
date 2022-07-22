@@ -14,6 +14,16 @@
 * Open a new Terminal in Cloud9. and run 
 
 ```bash
-git clone https://github.com/FrankieCheng/eksworkshopguide;chmod +755 eksworkshopguide/*.sh; . eksworkshopguide/eks-workshop-create-cluster.sh
+git clone https://github.com/FrankieCheng/eksworkshopguide;chmod +755 eksworkshopguide/eks-workshop-create-cluster.sh; . eksworkshopguide/eks-workshop-create-cluster.sh
 ```
 * Launching EKS and all the dependencies will take approximately 25 minutes
+
+4.Deploy the test application and scale the deployment to check Karpenter status.
+* Deploy a pause image and starts with zero replicas.
+* Scale the deployment to 5.
+* Check the karpenter status.
+```bash
+kubectl apply -f ~/environment/eksworkshopguide/yamls/karpenter-usage-1.yaml
+kubectl scale deployment inflate --replicas 5
+kubectl logs -f -n karpenter -l app.kubernetes.io/name=karpenter -c controller
+```

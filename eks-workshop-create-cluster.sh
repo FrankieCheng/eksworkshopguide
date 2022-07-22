@@ -72,7 +72,7 @@ eksctl completion bash >> ~/.bash_completion
 . ~/.bash_completion
 
 # replace parameters.
-sed 's/$AWS_REGION/'"${AWS_REGION}"'/g;s/$AZ0/'"${AZS[0]}"'/g;s/$AZ1/'"${AZS[1]}"'/g;s/$AZ2/'"${AZS[2]}"'/g;s/$MASTER_ARN/'"${master_arn}"'/g;' eksworkshopguide/yamls/eksclustertemplate.yaml > eksworkshopguide/yamls/ekscluster.yaml
+sed 's/$AWS_REGION/'"${AWS_REGION}"'/g;s/$AZ0/'"${AZS[0]}"'/g;s/$AZ1/'"${AZS[1]}"'/g;s/$AZ2/'"${AZS[2]}"'/g;s/$MASTER_ARN/'"${master_arn}"'/g;' eksworkshopguide/yamls/ekscluster-template.yaml > eksworkshopguide/yamls/ekscluster.yaml
 
 # create cluster.
 eksctl create cluster -f eksworkshopguide/yamls/ekscluster.yaml

@@ -16,4 +16,8 @@ kubectl get nodes --label-columns=kubernetes.io/arch
 ```bash
 kubectl get svc
 ```
-* Access the External-IP from curl or browser, you will see the message 'Hi! This processor architecture is x64' or 'Hi! This processor architecture is arm64'.
+* use the following command to check access pod arch.
+```bash
+ELB=$(kubectl get service multiarch-service -o json | jq -r '.status.loadBalancer.ingress[].hostname')
+for i in {1..20}; do curl -m3 $ELB ; echo; done
+```

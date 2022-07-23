@@ -16,3 +16,4 @@ kubectl get nodes --label-columns=kubernetes.io/arch
 ```bash
 kubectl get svc
 ```
+* Access the External-IP from curl or browser, you will see the message 'Hi! This processor architecture is x64' or 'Hi! This processor architecture is arm64'.

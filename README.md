@@ -19,5 +19,5 @@
 * deploy the multiarch image on x86 and graviton nodegroup.
 
 
-## 4.Use [Bottlerocket](Bottlerocket.MD) to create a bottlerocket nodegroup.---(Time: about 10 mins)
+## 5.Use [Bottlerocket](Bottlerocket.MD) to create a bottlerocket nodegroup.---(Time: about 10 mins)
 * create a bottlerocket nodegroup.

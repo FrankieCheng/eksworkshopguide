@@ -12,3 +12,8 @@ kubectl get nodes --label-columns=kubernetes.io/arch
 . ~/environment/eksworkshopguide/eks-graviton2-deploy.sh
 ```
 * deploy the application on both x86 and arm64(Graviton)
+* You can use the following command to scale the deployment.
+```bash
+kubectl scale deployment multiarch-deployment --replicas 5
+```
+

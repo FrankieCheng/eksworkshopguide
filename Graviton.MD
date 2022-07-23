@@ -12,7 +12,7 @@ kubectl get nodes --label-columns=kubernetes.io/arch
 . ~/environment/eksworkshopguide/eks-graviton2-deploy.sh
 ```
 * deploy the application on both x86 and arm64(Graviton)
-* use the following command to see the service status, and get the EXTERNAL-IP to access the service.
+* use the following command to see the service status, and get the EXTERNAL-IP to access the service after the NLB is active. https://ap-southeast-1.console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LoadBalancers:sort=loadBalancerName
 ```bash
 kubectl get svc
 ```

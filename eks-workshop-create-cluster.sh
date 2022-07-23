@@ -46,6 +46,7 @@ echo "export AZS=(${AZS[@]})" | tee -a ~/.bash_profile
 aws configure set default.region ${AWS_REGION}
 aws configure get default.region
 
+#check the iam role is valid or not.
 aws sts get-caller-identity --query Arn | grep eksworkshop-admin -q && echo "IAM role valid" || echo "IAM role NOT valid"
 
 #create custom kms.
@@ -63,6 +64,7 @@ sudo mv -v /tmp/eksctl /usr/local/bin
 
 eksctl version
 
+#add the bash completion on eksctl.
 eksctl completion bash >> ~/.bash_completion
 . /etc/profile.d/bash_completion.sh
 . ~/.bash_completion
@@ -72,6 +74,12 @@ sed 's/$AWS_REGION/'"${AWS_REGION}"'/g;s/$AZ0/'"${AZS[0]}"'/g;s/$AZ1/'"${AZS[1]}
 
 # create cluster.
 eksctl create cluster -f eksworkshopguide/yamls/ekscluster.yaml
+
+#replace the parameter for nodegroup template.
+sed 's/$AWS_REGION/'"${AWS_REGION}"'/g' eksworkshopguide/yamls/ekscluster-nodegroup-template.yaml > eksworkshopguide/yamls/ekscluster-nodegroup.yaml
+
+# create nodegroup.
+eksctl create nodegroup --config-file eksworkshopguide/yamls/ekscluster-nodegroup.yaml
 
 kubectl get nodes # if we see our 3 nodes, we know we have authenticated correctly
 
@@ -92,103 +100,8 @@ elif echo ${c9builder} | grep -q assumed-role; then
         echo Role ARN: ${rolearn}
 fi
 
+#create the iam identity mapping, the iam user can access the eks cluster on console.
 eksctl create iamidentitymapping --cluster eksworkshop-eksctl --arn ${rolearn} --group system:masters --username admin
 
+#show the configmap.
 kubectl describe configmap -n kube-system aws-auth
-
-
-##setup helm.
-curl -sSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-
-helm version --short
-
-helm repo add stable https://charts.helm.sh/stable
-
-helm search repo stable
-
-helm completion bash >> ~/.bash_completion
-. /etc/profile.d/bash_completion.sh
-. ~/.bash_completion
-source <(helm completion bash)
-
-
-#setup karpenter.
-export CLUSTER_ENDPOINT="$(aws eks describe-cluster --name eksworkshop-eksctl --query "cluster.endpoint" --output text)"
-
-export KARPENTER_VERSION=v0.13.2
-
-export CLUSTER_NAME=eksworkshop-eksctl
-
-echo "export CLUSTER_ENDPOINT=${CLUSTER_ENDPOINT}" | tee -a ~/.bash_profile
-echo "export KARPENTER_VERSION=${KARPENTER_VERSION}" | tee -a ~/.bash_profile
-echo "export CLUSTER_NAME=${CLUSTER_NAME}" | tee -a ~/.bash_profile
-
-source  ~/.bash_profile
-
-echo $KARPENTER_VERSION $CLUSTER_NAME $AWS_REGION $ACCOUNT_ID
-
-TEMPOUT=$(mktemp)
-
-curl -fsSL https://karpenter.sh/"${KARPENTER_VERSION}"/getting-started/getting-started-with-eksctl/cloudformation.yaml  > $TEMPOUT \
-&& aws cloudformation deploy \
-  --stack-name "Karpenter-${CLUSTER_NAME}" \
-  --template-file "${TEMPOUT}" \
-  --capabilities CAPABILITY_NAMED_IAM \
-  --parameter-overrides "ClusterName=${CLUSTER_NAME}"
-
-eksctl create iamidentitymapping \
-  --username system:node:{{EC2PrivateDNSName}} \
-  --cluster "${CLUSTER_NAME}" \
-  --arn "arn:aws:iam::${ACCOUNT_ID}:role/KarpenterNodeRole-${CLUSTER_NAME}" \
-  --group system:bootstrappers \
-  --group system:nodes
-
-eksctl create iamserviceaccount \
-  --cluster "${CLUSTER_NAME}" --name karpenter --namespace karpenter \
-  --role-name "${CLUSTER_NAME}-karpenter" \
-  --attach-policy-arn "arn:aws:iam::${ACCOUNT_ID}:policy/KarpenterControllerPolicy-${CLUSTER_NAME}" \
-  --role-only \
-  --approve
-
-export KARPENTER_IAM_ROLE_ARN="arn:aws:iam::${ACCOUNT_ID}:role/${CLUSTER_NAME}-karpenter"
-
-aws iam create-service-linked-role --aws-service-name spot.amazonaws.com || true
-# If the role has already been successfully created, you will see:
-# An error occurred (InvalidInput) when calling the CreateServiceLinkedRole operation: Service role name AWSServiceRoleForEC2Spot has been taken in this account, please try a different suffix.
-
-helm repo add karpenter https://charts.karpenter.sh/
-helm repo update
-
-helm upgrade --install --namespace karpenter --create-namespace \
-  karpenter karpenter/karpenter \
-  --version ${KARPENTER_VERSION} \
-  --set serviceAccount.annotations."eks\.amazonaws\.com/role-arn"=${KARPENTER_IAM_ROLE_ARN} \
-  --set clusterName=${CLUSTER_NAME} \
-  --set clusterEndpoint=${CLUSTER_ENDPOINT} \
-  --set aws.defaultInstanceProfile=KarpenterNodeInstanceProfile-${CLUSTER_NAME} \
-  --wait # for the defaulting webhook to install before creating a Provisioner
-
-#SUBNET_IDS=$(aws cloudformation describe-stacks \
-#    --stack-name eksctl-${CLUSTER_NAME}-cluster \
-#    --query 'Stacks[].Outputs[?OutputKey==`SubnetsPrivate`].OutputValue' \
-#    --output text)
-#aws ec2 create-tags \
-#    --resources $(echo $SUBNET_IDS | tr ',' '\n') \
-#    --tags Key="karpenter.sh/discovery",Value=${CLUSTER_NAME}
-
-#VALIDATION_SUBNETS_IDS=$(aws ec2 describe-subnets --filters Name=tag:"karpenter.sh/discovery",Values= --query "Subnets[].SubnetId" --output text | sed 's/\t/,/')
-#echo "$SUBNET_IDS == $VALIDATION_SUBNETS_IDS"
-
-
-#SG_IDS=$(aws cloudformation describe-stacks \
-#    --stack-name eksctl-${CLUSTER_NAME}-cluster \
-#    --query 'Stacks[].Outputs[?OutputKey==`SecurityGroup`].OutputValue' \
-#    --output text)
-#aws ec2 create-tags \
-#    --resources $(echo $SG_IDS | tr ',' '\n') \
-#    --tags Key="karpenter.sh/discovery",Value=${CLUSTER_NAME}
-
-#VALIDATION_SG_IDS=$(aws ec2 describe-security-groups --filters Name=tag:"karpenter.sh/discovery",Values= --query "SecurityGroups[].GroupId" --output text | sed 's/\t/,/')
-#echo "$SG_IDS == $VALIDATION_SG_IDS"
-
-kubectl apply -f eksworkshopguide/yamls/karpenter-provisioner.yaml

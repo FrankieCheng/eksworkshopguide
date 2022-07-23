@@ -11,15 +11,5 @@ metadata:
 
 availabilityZones: ["$AZ0", "$AZ1", "$AZ2"]
 
-managedNodeGroups:
-- name: eksworkshop-eksctl-ng
-  desiredCapacity: 1
-  minSize: 1
-  maxSize: 10
-  amiFamily: AmazonLinux2
-  instanceType: m5.large
-  ssh:
-    enableSsm: true
-
 iam:
   withOIDC: true

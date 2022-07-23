@@ -1,0 +1,17 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eksworkshop-eksctl
+  region: $AWS_REGION
+
+managedNodeGroups:
+- name: eksworkshop-eksctl-ng
+  desiredCapacity: 1
+  minSize: 1
+  maxSize: 10
+  amiFamily: AmazonLinux2
+  instanceType: m5.large
+  ssh:
+    enableSsm: true

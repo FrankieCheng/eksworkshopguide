@@ -22,3 +22,4 @@ ELB=$(kubectl get service multiarch-service -o json | jq -r '.status.loadBalance
 for i in {1..20}; do curl -m3 $ELB ; echo; done
 
 ```
+![arch-check](./screenshots/3-Graviton-Arch-Check.png)

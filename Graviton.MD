@@ -1,4 +1,4 @@
-1.Create the graviton node group (10mins).
+##1.Create the graviton node group (10mins).
 ```bash
 . ~/environment/eksworkshopguide/eks-graviton2-create-nodegroup.sh
 ```
@@ -7,7 +7,7 @@
 kubectl get nodes --label-columns=kubernetes.io/arch
 ```
 
-2.Deploy the sample application on arm64 and x86
+##2.Deploy the sample application on arm64 and x86
 ```bash
 . ~/environment/eksworkshopguide/eks-graviton2-deploy.sh
 ```
@@ -16,6 +16,8 @@ kubectl get nodes --label-columns=kubernetes.io/arch
 ```bash
 kubectl get svc
 ```
+
+##3.Check the deployment status
 * use the following command to check access pod arch as screen show as below.
 ```bash
 ELB=$(kubectl get service multiarch-service -o json | jq -r '.status.loadBalancer.ingress[].hostname')

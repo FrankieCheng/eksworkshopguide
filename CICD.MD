@@ -1,4 +1,4 @@
-1. Create Multi-Arch Docker file (about 20 mins)
+#1. Create Multi-Arch Docker file (about 20 mins)
 ```bash
 . ~/environment/eksworkshopguide/eks-graviton2-cicd.sh
 ```
@@ -6,4 +6,5 @@
 * Create the CodePipeline.
 * Commit the code to trigger Codepipeline.
 * Monitor CodePipeline steps using AWS Console by opening this link in a new tab. https://ap-southeast-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/graviton2-pipeline-lab/view?region=ap-southeast-1
-* Wait all steps of CodePipeline are successful, check the repository images at https://ap-southeast-1.console.aws.amazon.com/ecr/repositories?region=ap-southeast-1
+* **<font color=#FF0000>Wait all steps of CodePipeline are successful</font>**
+* check the repository images at https://ap-southeast-1.console.aws.amazon.com/ecr/repositories?region=ap-southeast-1

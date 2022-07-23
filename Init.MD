@@ -1,16 +1,16 @@
-1.Create Role:
+##1.Create Role:
 * Click https://us-east-1.console.aws.amazon.com/iam/home#/roles$new?step=type&commonUseCase=EC2%2BEC2&selectedUseCase=EC2&policies=arn:aws:iam::aws:policy%2FAdministratorAccess&roleName=eksworkshop-admin 
 * Confirm that AWS service and EC2 are selected, then click Next: Permissions to view permissions.
 * Confirm that AdministratorAccess is checked, then click Next: Tags to assign tags.
 * Take the defaults, and click Next: Review to review.
 * Enter eksworkshop-admin for the Name, and click Create role.
 
-2.Launch Cloud9 in your closest region:
+##2.Launch Cloud9 in your closest region:
 * Click https://ap-southeast-1.console.aws.amazon.com/cloud9/home/create
 * Name it eksworkshop, click Next.
 * Choose Other instance type, and select t3.medium for instance type, take all default values and click Create environment
 
-3.Launch a EKS with Nodegroups and install Karpenter.
+##3.Launch a EKS with Nodegroups and install Karpenter.
 * Open a new Terminal in Cloud9. and run 
 ![new terminal](screenshots/1-cluster-terminal.png)
 
@@ -21,7 +21,7 @@ chmod +755 eksworkshopguide/*.sh
 ```
 * Launching EKS and all the dependencies will take approximately 30 minutes
 
-4.Deploy the test application and scale the deployment to check Karpenter status.
+##4.Deploy the test application and scale the deployment to check Karpenter status.
 * Deploy a pause image and starts with zero replicas.
 * Scale the deployment to 5.
 * Check the karpenter status.

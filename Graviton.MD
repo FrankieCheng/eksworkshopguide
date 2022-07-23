@@ -16,7 +16,7 @@ kubectl get nodes --label-columns=kubernetes.io/arch
 ```bash
 kubectl get svc
 ```
-* use the following command to check access pod arch.
+* use the following command to check access pod arch as screen show as below.
 ```bash
 ELB=$(kubectl get service multiarch-service -o json | jq -r '.status.loadBalancer.ingress[].hostname')
 for i in {1..20}; do curl -m3 $ELB ; echo; done

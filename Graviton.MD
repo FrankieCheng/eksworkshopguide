@@ -20,4 +20,5 @@ kubectl get svc
 ```bash
 ELB=$(kubectl get service multiarch-service -o json | jq -r '.status.loadBalancer.ingress[].hostname')
 for i in {1..20}; do curl -m3 $ELB ; echo; done
+
 ```

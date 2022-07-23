@@ -15,7 +15,9 @@
 ![new terminal](screenshots/1-cluster-terminal.png)
 
 ```bash
-git clone https://github.com/FrankieCheng/eksworkshopguide;chmod +755 eksworkshopguide/*.sh; . eksworkshopguide/eks-workshop-create-cluster.sh
+git clone https://github.com/FrankieCheng/eksworkshopguide
+chmod +755 eksworkshopguide/*.sh
+. eksworkshopguide/eks-workshop-create-cluster.sh
 ```
 * Launching EKS and all the dependencies will take approximately 30 minutes
 

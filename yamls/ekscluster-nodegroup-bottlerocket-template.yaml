@@ -7,27 +7,30 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: eksworkshop-eksctl
+  name: cluster-20
   region: $AWS_REGION
 
 nodeGroups:
-  - name: eksworkshop-eksctl-ng-bottlerocket
-    instanceType: m5.large
-    desiredCapacity: 2
+  - name: ng1-public
+    instanceType: m5.xlarge
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 10
     amiFamily: Bottlerocket
-    ami: auto-ssm
     labels:
-      "bottlerocket": "true"
-    iam:
-      attachPolicyARNs:
-        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
-        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
-        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
-        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
-    ssh:
-      # Enable ssh access (via the admin container)
-      allow: true
+      "network-locality.example.com/public": "true"
     bottlerocket:
       enableAdminContainer: true
       settings:
-        motd: "Hello, eksctl!"
+        motd: "Hello AviaGames, Welcome to Amazon EKS Immersion DAY!"
+
+  - name: ng2-public-ssh
+    instanceType: m5.large
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 10
+    amiFamily: Bottlerocket
+    ssh:
+      # Enable ssh access (via the admin container)
+      allow: true
+      publicKeyName: bottlerocket-key-pair

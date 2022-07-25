@@ -8,6 +8,8 @@
 kubectl get nodes --label-columns=kubernetes.io/arch
 
 ```
+* New arm64 node was added to the cluster.
+![graviton-node](./screenshots/3-Graviton-nodegroup.png)
 
 ## 2.Deploy the sample application on arm64 and x86
 ```bash

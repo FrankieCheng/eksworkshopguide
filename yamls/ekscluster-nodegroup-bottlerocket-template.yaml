@@ -7,11 +7,11 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: cluster-20
+  name: eksworkshop-eksctl
   region: $AWS_REGION
 
 nodeGroups:
-  - name: ng1-public
+  - name: eksworkshop-eksctl-ng-bottlerocket-public
     instanceType: m5.xlarge
     desiredCapacity: 1
     minSize: 1
@@ -24,7 +24,7 @@ nodeGroups:
       settings:
         motd: "Hello AviaGames, Welcome to Amazon EKS Immersion DAY!"
 
-  - name: ng2-public-ssh
+  - name: eksworkshop-eksctl-ng-bottlerocket-public-ssh
     instanceType: m5.large
     desiredCapacity: 1
     minSize: 1

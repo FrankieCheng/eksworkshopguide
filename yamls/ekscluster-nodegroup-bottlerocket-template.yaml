@@ -33,4 +33,4 @@ nodeGroups:
     ssh:
       # Enable ssh access (via the admin container)
       allow: true
-      publicKeyName: bottlerocket-key-pair
+      publicKeyName: eksbottlerocketkeypair

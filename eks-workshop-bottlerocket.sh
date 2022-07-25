@@ -8,6 +8,9 @@ aws ec2 create-key-pair \
     --query "KeyMaterial" \
     --output text > bottlerocket-key-pair.pem
 
+#change the pem file permission.
+chmod 400 bottlerocket-key-pair.pem 
+
 #replace the parameter for nodegroup template.
 sed 's/$AWS_REGION/'"${AWS_REGION}"'/g' eksworkshopguide/yamls/ekscluster-nodegroup-bottlerocket-template.yaml > eksworkshopguide/yamls/ekscluster-nodegroup-bottlerocket.yaml
 

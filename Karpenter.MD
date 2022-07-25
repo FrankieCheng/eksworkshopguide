@@ -16,6 +16,13 @@ kubectl scale deployment inflate --replicas 5
 kubectl logs -f -n karpenter -l app.kubernetes.io/name=karpenter -c controller
 
 ```
+![karpenter-status](./screenshots/2-karpenter.png)
+* Check the pods status
+```bash
+kubectl get pods -A
+
+```
+![karpenter-pods](./screenshots/2-karpenter-pods.png)
 * After the pods are running, scale the deployment relicas to 0.
 ```bash
 kubectl scale deployment inflate --replicas 0

@@ -1,4 +1,4 @@
-##1.Install Helm and setup Karpenter.
+## 1.Install Helm and setup Karpenter.
 * In the cloud9 terminal, run the command on terminal.
 ```bash
 . eksworkshopguide/eks-karpenter.sh
@@ -6,7 +6,7 @@
 ```
 * Install Helm and all the dependencies will take approximately 5 minutes
 
-##2.Deploy the test application and scale the deployment to check Karpenter status.
+## 2.Deploy the test application and scale the deployment to check Karpenter status.
 * Deploy a pause image and starts with zero replicas.
 * Scale the deployment to 5.
 * Check the karpenter status.

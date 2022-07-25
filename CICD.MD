@@ -1,4 +1,4 @@
-##1. Create Multi-Arch Docker file (about 20 mins)
+## 1. Create Multi-Arch Docker file (about 20 mins)
 ```bash
 . ~/environment/eksworkshopguide/eks-graviton2-cicd.sh
 
@@ -12,7 +12,7 @@
 * **<font color=#FF0000>Wait all steps of CodePipeline are successful</font>**
 * check the repository images at https://ap-southeast-1.console.aws.amazon.com/ecr/repositories?region=ap-southeast-1
   
-##2.Modify the app, and trigger the cicd to build new images.
+## 2.Modify the app, and trigger the cicd to build new images.
 *Run the command.
 ```bash
 sed -i 's/Hi/Hi {Replace with your name}/g' ~/environment/graviton2-workshop/graviton2-pipeline-lab/nodejs_code/app.js

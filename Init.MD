@@ -21,8 +21,8 @@ chmod +755 eksworkshopguide/*.sh
 
 ```
 * Launching EKS and all the dependencies will take approximately 25 minutes
-* You can test the EKS cluster and node.
+* You can test the EKS cluster and nodes in console or use bash, if we see our 1 node, we know we have authenticated correctly
 ```bash
-kubectl get nodes # if we see our 1 node, we know we have authenticated correctly
+kubectl get nodes
 
 ```

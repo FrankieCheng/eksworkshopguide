@@ -2,6 +2,7 @@
 * runt the following command to setup a bottlerocket unmanaged nodegroup.
 ```bash
 . eksworkshopguide/eks-workshop-bottlerocket.sh
+
 ```
 * Launching EKS and all the dependencies will take approximately 10 minutes
 

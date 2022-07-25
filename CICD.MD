@@ -1,6 +1,7 @@
 ##1. Create Multi-Arch Docker file (about 20 mins)
 ```bash
 . ~/environment/eksworkshopguide/eks-graviton2-cicd.sh
+
 ```
 * Clone the Repo from Graviton workshop https://github.com/aws-samples/graviton2-workshop 
 * Create the CodePipeline.

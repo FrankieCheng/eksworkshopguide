@@ -18,5 +18,6 @@
 git clone https://github.com/FrankieCheng/eksworkshopguide
 chmod +755 eksworkshopguide/*.sh
 . eksworkshopguide/eks-workshop-create-cluster.sh
+
 ```
 * Launching EKS and all the dependencies will take approximately 25 minutes

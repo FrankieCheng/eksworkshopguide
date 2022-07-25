@@ -4,7 +4,7 @@
 . eksworkshopguide/eks-karpenter.sh
 
 ```
-* Launching EKS and all the dependencies will take approximately 5 minutes
+* Install Helm and all the dependencies will take approximately 5 minutes
 
 ##2.Deploy the test application and scale the deployment to check Karpenter status.
 * Deploy a pause image and starts with zero replicas.

@@ -3,7 +3,7 @@
 * Create a role
 * Install Kubectl
 * Create a cluster
-## 2.Following the guide [Karpenter](Karpenter.MD) to generate the multi-arch images on X86 and arm64 (Graviton) ---(Time: about 10 mins)
+## 2.Following the guide [Karpenter](Karpenter.MD) to install helm and Karpenter ---(Time: about 10 mins)
 * Install helm
 * Setup Karpenter
 * Deploy the test application and scale the deployment to check Karpenter status.

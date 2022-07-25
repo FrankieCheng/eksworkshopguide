@@ -20,4 +20,5 @@
 
 
 ## 5.Use [Bottlerocket](Bottlerocket.MD) to create a bottlerocket nodegroup.---(Time: about 10 mins)
-* create a bottlerocket nodegroup.
+* Create a key pair which can access the bottlerocket node.
+* create 2 bottlerocket nodegroups, and one with the SSH.

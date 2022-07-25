@@ -4,10 +4,20 @@
 . eksworkshopguide/eks-workshop-bottlerocket.sh
 
 ```
-* Launching EKS and all the dependencies will take approximately 10 minutes
+* create bottlerocket nodegroups and all the dependencies will take approximately 10 minutes
 
-* check the bottlerocket nodegroup status.
-![Bottlerocket](./screenshots/5-Bottlerocket.png)
+* Check the added nodegroup
+```bash
+eksctl get nodegroups --cluster eksworkshop-eksctl
 
-* check the bottlerocket node status.
-![Bottlerocket](./screenshots/5-Bottlerocket-node.png)
+```
+![Bottlerocket-nodegroup](./screenshots/5-Bottlerocket2.png)
+
+* Check the node in the cluster.
+```bash
+kubectl get nodes --label-columns=alpha.eksctl.io/nodegroup-name
+
+```
+![Bottlerocket-node](./screenshots/5-Bottlerocket3.png)
+
+

@@ -34,3 +34,7 @@ nodeGroups:
       # Enable ssh access (via the admin container)
       allow: true
       publicKeyName: eksbottlerocketkeypair
+    bottlerocket:
+      enableAdminContainer: true
+      settings:
+        motd: "Hello AviaGames, Welcome to Amazon EKS Immersion DAY!"  

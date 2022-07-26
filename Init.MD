@@ -20,6 +20,8 @@ chmod +755 eksworkshopguide/*.sh
 . eksworkshopguide/eks-workshop-create-cluster.sh
 
 ```
+[eks-workshop-create-cluster](./eks-workshop-create-cluster.sh)
+
 * Launching EKS and all the dependencies will take approximately 25 minutes
 * You can test the EKS cluster and nodes in console or use bash, if we see our 1 node, we know we have authenticated correctly
 ```bash

@@ -1,0 +1,24 @@
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: default-ondemand-spot
+spec:
+  requirements:
+    - key: "node.kubernetes.io/instance-type"
+      operator: In
+      values: ["m5.large", "m5.2xlarge"]
+    - key: "kubernetes.io/arch" # If not included, the webhook for the AWS Cloud Provider will default to amd64
+      operator: In
+      values: ["arm64", "amd64"]
+    - key: "karpenter.sh/capacity-type" # If not included, the webhook for the AWS cloud provider will default to on-demand
+      operator: In
+      values: ["spot", "on-demand"]
+  limits:
+    resources:
+      cpu: 100
+  provider:
+    subnetSelector:
+      karpenter.sh/discovery: eksworkshop-eksctl
+    securityGroupSelector:
+      karpenter.sh/discovery: eksworkshop-eksctl
+  ttlSecondsAfterEmpty: 30

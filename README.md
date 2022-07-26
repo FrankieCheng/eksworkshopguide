@@ -28,8 +28,8 @@
 
 * Karpenter: https://www.eksworkshop.com/beginner/085_scaling_karpenter/
 
-*IAM最小权限：https://github.com/weaveworks/eksctl/blob/main/userdocs/src/usage/minimum-iam-policies.md
+* IAM最小权限：https://github.com/weaveworks/eksctl/blob/main/userdocs/src/usage/minimum-iam-policies.md
 
-*CodeBuild Multi Arch: https://aws.amazon.com/cn/blogs/devops/creating-multi-architecture-docker-images-to-support-graviton2-using-aws-codebuild-and-aws-codepipeline/
+* CodeBuild Multi Arch: https://aws.amazon.com/cn/blogs/devops/creating-multi-architecture-docker-images-to-support-graviton2-using-aws-codebuild-and-aws-codepipeline/
 
-*eksctl examples: https://github.com/weaveworks/eksctl/tree/main/examples
+* eksctl examples: https://github.com/weaveworks/eksctl/tree/main/examples

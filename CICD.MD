@@ -3,6 +3,7 @@
 . ~/environment/eksworkshopguide/eks-graviton2-cicd.sh
 
 ```
+[eks-graviton2-cicd](./eks-graviton2-cicd.sh)
 * Clone the Repo from Graviton workshop https://github.com/aws-samples/graviton2-workshop 
 * Create the CodePipeline.
 * Commit the code to trigger Codepipeline.

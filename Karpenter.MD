@@ -4,6 +4,7 @@
 . eksworkshopguide/eks-karpenter.sh
 
 ```
+[eks-karpenter.sh](eks-karpenter.sh)
 * Install Helm and all the dependencies will take approximately 5 minutes
 
 ## 2.Deploy the test application and scale the deployment to check Karpenter status.

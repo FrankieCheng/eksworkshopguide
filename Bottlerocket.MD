@@ -4,6 +4,7 @@
 . eksworkshopguide/eks-workshop-bottlerocket.sh
 
 ```
+[eks-workshop-bottlerocket.sh](./eks-workshop-bottlerocket.sh)
 * create bottlerocket nodegroups and all the dependencies will take approximately 10 minutes
 
 * Check the added nodegroup

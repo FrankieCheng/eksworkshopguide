@@ -8,6 +8,7 @@
 kubectl get nodes --label-columns=kubernetes.io/arch
 
 ```
+[eks-graviton2-create-nodegroup.sh](./eks-graviton2-create-nodegroup.sh)
 * New arm64 node was added to the cluster.
 ![graviton-node](./screenshots/3-Graviton-nodegroup.png)
 
@@ -22,6 +23,7 @@ kubectl get nodes --label-columns=kubernetes.io/arch
 kubectl get svc
 
 ```
+[eks-graviton2-deploy.sh](./eks-graviton2-deploy.sh)
 
 ## 3.Check the deployment status
 * use the following command to check access pod arch as screen show as below.

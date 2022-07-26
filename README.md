@@ -22,3 +22,10 @@
 ## 5.Use [Bottlerocket](Bottlerocket.MD) to create a bottlerocket nodegroup.---(Time: about 10 mins)
 * Create a key pair which can access the bottlerocket node.
 * create 2 bottlerocket nodegroups, and one with the SSH.
+
+## 6.Resources
+*eksworkshop*: https://www.eksworkshop.com/010_introduction/
+*Karpenter*: https://www.eksworkshop.com/beginner/085_scaling_karpenter/
+*IAM最小权限*：https://github.com/weaveworks/eksctl/blob/main/userdocs/src/usage/minimum-iam-policies.md
+*CodeBuild Multi Arch*: https://aws.amazon.com/cn/blogs/devops/creating-multi-architecture-docker-images-to-support-graviton2-using-aws-codebuild-and-aws-codepipeline/
+*eksctl examples:* https://github.com/weaveworks/eksctl/tree/main/examples

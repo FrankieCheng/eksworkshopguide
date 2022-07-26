@@ -42,7 +42,7 @@ eksctl create iamidentitymapping \
   --arn "arn:aws:iam::${ACCOUNT_ID}:role/KarpenterNodeRole-${CLUSTER_NAME}" \
   --group system:bootstrappers \
   --group system:nodes
-#create iam identity mapping for karpenter
+#create AWS IAM Roles mapping to Kubernetes Service Accounts. for karpenter
 eksctl create iamserviceaccount \
   --cluster "${CLUSTER_NAME}" --name karpenter --namespace karpenter \
   --role-name "${CLUSTER_NAME}-karpenter" \

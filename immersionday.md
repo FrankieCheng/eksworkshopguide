@@ -41,5 +41,5 @@
 5 . observability (20 mins)
     https://www.eksworkshop.com/intermediate/240_monitoring/
 
-6 . logging (20 mins)
+6 . logging (30 mins)
     https://www.eksworkshop.com/intermediate/230_logging/

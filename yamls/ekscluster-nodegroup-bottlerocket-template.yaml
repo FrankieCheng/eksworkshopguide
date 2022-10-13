@@ -22,7 +22,7 @@ nodeGroups:
     bottlerocket:
       enableAdminContainer: true
       settings:
-        motd: "Hello AviaGames, Welcome to Amazon EKS Immersion DAY!"
+        motd: "Hello, Welcome to Amazon EKS Immersion DAY!"
 
   - name: eksworkshop-eksctl-ng-bottlerocket-public-ssh
     instanceType: m5.large
@@ -37,4 +37,4 @@ nodeGroups:
     bottlerocket:
       enableAdminContainer: true
       settings:
-        motd: "Hello AviaGames, Welcome to Amazon EKS Immersion DAY!"  
+        motd: "Hello, Welcome to Amazon EKS Immersion DAY!"  

@@ -20,5 +20,6 @@ sed "s#{{container_uri}}#$CONTAINER_URI#" ~/environment/eksworkshopguide/yamls/m
 #deploy the multi arch application.
 kubectl apply -f ~/environment/eksworkshopguide/yamls/multi-arch.yaml
 
+
 #check the pods status.
 kubectl get pods -o wide 

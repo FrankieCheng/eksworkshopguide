@@ -16,7 +16,7 @@
 ## 2.Modify the app, and trigger the cicd to build new images.
 *Run the command.
 ```bash
-sed -i 's/Hi/Hi AviaGames/g' ~/environment/graviton2-workshop/graviton2-pipeline-lab/nodejs_code/app.js
+sed -i 's/Hi/Hi EKS User/g' ~/environment/graviton2-workshop/graviton2-pipeline-lab/nodejs_code/app.js
 cd ~/environment/graviton2-workshop/graviton2-pipeline-lab
 git add .
 git commit -m "First commit Node.js sample application."

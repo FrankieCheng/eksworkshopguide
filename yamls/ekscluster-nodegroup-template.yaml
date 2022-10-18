@@ -12,6 +12,6 @@ managedNodeGroups:
   minSize: 1
   maxSize: 10
   amiFamily: AmazonLinux2
-  instanceType: m5.large
+  instanceType: t3.medium
   ssh:
     enableSsm: true

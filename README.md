@@ -23,7 +23,15 @@
 * Create a key pair which can access the bottlerocket node.
 * create 2 bottlerocket nodegroups, and one with the SSH.
 
-## 6.Resources
+## 6.Use [EKS ALB ingress](Alb-ingress.MD) to install a ingress controller and deploy the game 2048.---(Time: about 10 mins)
+* Install alb ingress controller.
+* Deploy the game 2048.
+
+## 7.Use [EKS Node Interruption Handler](Node-Interruption-Handler-IMDS.MD) to setup Node Interruption Handler.---(Time: about 10 mins)
+* Setup Environment.
+* Deploy Node Interruption Handler.
+
+## Resources
 * eksworkshop: https://www.eksworkshop.com/010_introduction/
 
 * Karpenter: https://www.eksworkshop.com/beginner/085_scaling_karpenter/
@@ -33,3 +41,5 @@
 * CodeBuild Multi Arch: https://aws.amazon.com/cn/blogs/devops/creating-multi-architecture-docker-images-to-support-graviton2-using-aws-codebuild-and-aws-codepipeline/
 
 * eksctl examples: https://github.com/weaveworks/eksctl/tree/main/examples
+
+* Node Interruption Handler: https://github.com/aws/aws-node-termination-handler

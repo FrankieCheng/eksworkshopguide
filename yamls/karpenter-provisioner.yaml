@@ -14,5 +14,5 @@ spec:
     subnetSelector:
       karpenter.sh/discovery: eksworkshop-eksctl
     securityGroupSelector:
-      karpenter.sh/discovery: eksworkshop-eksctl
+      kubernetes.io/cluster/eksworkshop-eksctl: owned
   ttlSecondsAfterEmpty: 30

@@ -1,7 +1,7 @@
 ## 1.Install Helm and setup Karpenter.
 * In the cloud9 terminal, run the command on terminal.
 ```bash
-. eksworkshopguide/eks-karpenter.sh
+. ~/environment/eksworkshopguide/eks-karpenter.sh
 
 ```
 [eks-karpenter.sh](eks-karpenter.sh)

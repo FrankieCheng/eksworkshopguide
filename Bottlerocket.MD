@@ -1,7 +1,7 @@
 ## 1.Create a bottlerocket unmanaged nodegroup.
 * runt the following command to setup a bottlerocket unmanaged nodegroup.
 ```bash
-. eksworkshopguide/eks-workshop-bottlerocket.sh
+. ~/environment/eksworkshopguide/eks-workshop-bottlerocket.sh
 
 ```
 [eks-workshop-bottlerocket.sh](./eks-workshop-bottlerocket.sh)

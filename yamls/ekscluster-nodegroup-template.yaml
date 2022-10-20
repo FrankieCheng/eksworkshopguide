@@ -8,10 +8,10 @@ metadata:
 
 managedNodeGroups:
 - name: eksworkshop-eksctl-ng
-  desiredCapacity: 1
-  minSize: 1
+  desiredCapacity: 2
+  minSize: 2
   maxSize: 10
   amiFamily: AmazonLinux2
-  instanceType: t3.medium
+  instanceType: m5.large
   ssh:
     enableSsm: true

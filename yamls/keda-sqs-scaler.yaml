@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: test-secrets
+data:
+  AWS_ACCESS_KEY_ID: <encoded-user-id> # Required.
+  AWS_SECRET_ACCESS_KEY: <encoded-key> # Required.
+  AWS_SESSION_TOKEN: <encoded-session-token> # Required when using temporary credentials.
+---
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-trigger-auth-aws-credentials
+  namespace: keda-test
+spec:
+  secretTargetRef:
+  - parameter: awsAccessKeyID     # Required.
+    name: test-secrets            # Required.
+    key: AWS_ACCESS_KEY_ID        # Required.
+  - parameter: awsSecretAccessKey # Required.
+    name: test-secrets            # Required.
+    key: AWS_SECRET_ACCESS_KEY    # Required.
+  - parameter: awsSessionToken    # Required when using temporary credentials.
+    name: test-secrets            # Required when using temporary credentials.
+    key: AWS_SESSION_TOKEN        # Required when using temporary credentials.
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: aws-sqs-queue-scaledobject
+  namespace: keda-test
+spec:
+  scaleTargetRef:
+    name: nginx-deployment
+  triggers:
+  - type: aws-sqs-queue
+    authenticationRef:
+      name: keda-trigger-auth-aws-credentials
+    metadata:
+      queueURL: myQueue
+      queueLength: "5"
+      awsRegion: "eu-west-1"

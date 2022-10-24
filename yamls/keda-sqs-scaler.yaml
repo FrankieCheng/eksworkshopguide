@@ -40,3 +40,4 @@ spec:
       queueURL: myQueue
       queueLength: "5"
       awsRegion: "eu-west-1"
+      identityOwner: operator

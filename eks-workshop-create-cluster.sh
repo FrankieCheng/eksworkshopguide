@@ -1,8 +1,4 @@
 #!/bin/bash
-#ec2 iam change
-export instance_id=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
-aws ec2 associate-iam-instance-profile --instance-id $instance_id --iam-instance-profile Name=eksworkshop-admin
-
 #update cli
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
@@ -14,6 +10,11 @@ sudo yum -y install jq gettext bash-completion moreutils
 echo 'yq() {
   docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
 }' | tee -a ~/.bashrc && source ~/.bashrc
+
+#ec2 iam profile.
+export instance_id=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+export EC2_ASSOCIATE_ID=$(aws ec2 describe-iam-instance-profile-associations --filters Name=instance-id,Values=$instance_id | jq -r '.IamInstanceProfileAssociations[0].AssociationId')
+aws ec2 replace-iam-instance-profile-association --iam-instance-profile Name=eksworkshop-admin --association-id $EC2_ASSOCIATE_ID
 
 #install kubectl
 sudo curl --silent --location -o /usr/local/bin/kubectl \
